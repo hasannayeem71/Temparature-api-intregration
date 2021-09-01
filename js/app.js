@@ -24,8 +24,6 @@ const viewData = (data) => {
     spinnerToggle("none");
   }
 };
-// deafult call
-loadData();
 
 // searching call
 const viewInputData = () => {
@@ -46,3 +44,5 @@ const spinnerToggle = (displayStyle) => {
 const errorToggle = (displayStyle) => {
   document.getElementById("error").style.display = displayStyle;
 };
+// deafult call
+loadData();
