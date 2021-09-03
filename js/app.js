@@ -1,7 +1,8 @@
 // load data from api
+// 
 const loadData = (cityName = "gazipur") => {
   fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=fd75739370d96ca45ebf327a5581be52`
+    `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=fd75739370d96ca45ebf327a5581be52`
   )
     .then((res) => res.json())
     .then((data) => viewData(data));
@@ -9,13 +10,14 @@ const loadData = (cityName = "gazipur") => {
 
 // view necessary data from api
 const viewData = (data) => {
-  console.log();
+  console.log(data);
   if (data.cod == 200) {
     const display = document.getElementById("display");
     display.innerHTML = `
-            <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
+            <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="">
             <h1>${data?.name}</h1>
-            <h3><span>${(data?.main?.temp / 10.0).toFixed(2)}</span>&deg;C</h3>
+            <h5>${data.sys.country}</h5>
+            <h3><span>${(data?.main?.temp )}</span>&deg;C</h3>
             <h1 class="lead">${data?.weather[0].main}</h1>
     `;
     spinnerToggle("none");
